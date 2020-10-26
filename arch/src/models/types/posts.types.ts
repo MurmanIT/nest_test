@@ -1,8 +1,7 @@
-export type PostType  = {
+import { BaseType } from './base.types';
+export type PostType  =  BaseType & {
     title: string;
-    post: string;       
-    create_at: Date;
-    update_at: Date;
+    post: string;           
     userId?: number;
 }
 

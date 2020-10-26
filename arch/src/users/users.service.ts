@@ -1,35 +1,11 @@
+import { UsersTpService } from './factory/users.tp.service';
+import { CrudServiceInterface } from 'src/models';
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { UserType } from 'src/models';
-import { Repository } from 'typeorm';
-import { Users } from './../entity/user.entity';
-import { CrudServiceInterface } from './../models/interface/crud-service.interface';
+import { UserAbstractService } from './factory/users.abstract.service';
 
 @Injectable()
-export class UsersService implements CrudServiceInterface {
-
-    constructor(
-        @InjectRepository(Users)
-        private _usersRepository: Repository<Users>,
-    ){}
-    
-    getAll(): Promise<UserType[]> {        
-        return this._usersRepository.find();
-    }
-
-    create(user: UserType): Promise<UserType> {
-        return null;
-    }
-
-    getById(id: number): Promise<UserType> {
-        return null;
-    }
-
-    deleteById(id: number): Promise<string> {
-        return null;
-    }
-
-    update(id: number, update:UserType): Promise<UserType> {
-        return null;
+export class UsersService extends UserAbstractService {
+    public factoryCrud(): CrudServiceInterface {
+        return new UsersTpService();
     }
 }

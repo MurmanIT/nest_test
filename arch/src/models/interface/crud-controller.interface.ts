@@ -9,8 +9,7 @@ export interface CrudControllerInterface {
 }
 
 export interface UsersControllerInterface extends CrudControllerInterface {
-    create(user?: UserType): Promise<UserType>;        
-    updateById(id: number, user?: UserType): Promise<UserType>;
+    create(user?: UserType): Promise<UserType>;         
     getById(id: number): Promise<UserType>;
 }
 

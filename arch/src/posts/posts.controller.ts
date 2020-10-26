@@ -1,7 +1,8 @@
+import { CreatePostDto, BasePostDto, SearchPostDto } from './dto/posts.dto';
 import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common';
 import { PostControllerInterface } from 'src/models';
-import { PostType } from 'src/models/types/posts.types';
-import { SearchPostType } from './../models/types/posts.types';
+import { PostType } from 'src/models';
+import { SearchPostType } from 'src/models';
 
 
 @Controller('posts')
@@ -12,7 +13,7 @@ export class PostsController implements PostControllerInterface {
     }
     
     @Post()
-    create(@Body() post: PostType): Promise<PostType>{
+    create(@Body() post: CreatePostDto): Promise<PostType>{
         throw new Error('Method not implemented.');
     }
 
@@ -22,7 +23,7 @@ export class PostsController implements PostControllerInterface {
     }
 
     @Put(':id')
-    updateById(id: number, @Body() post: PostType): Promise<PostType> {
+    updateById(id: number, @Body() post: BasePostDto): Promise<PostType> {
         throw new Error('Method not implemented.');
     }
 
@@ -32,7 +33,7 @@ export class PostsController implements PostControllerInterface {
     }
 
     @Get('search')
-    searchPosts(@Query() search: SearchPostType): Promise<PostType[]> {
+    searchPosts(@Query() search: SearchPostDto): Promise<PostType[]> {
         return null;
     }
 }
