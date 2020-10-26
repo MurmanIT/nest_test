@@ -8,5 +8,4 @@ export interface CrudServiceInterface {
 }
 
 export interface PostSeriviceInterface extends CrudServiceInterface {
-    searchPosts(search: SearchPostType): Promise<PostType[]>;
 }

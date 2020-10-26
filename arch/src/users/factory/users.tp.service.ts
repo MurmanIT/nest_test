@@ -9,20 +9,15 @@ export class UsersTpService implements CrudServiceInterface {
     async getAll(): Promise<UserType[]> {
         return await this._getQueryBuilder
             .select()
-            .from(Users, "user")
+            .from(Users, "users")
             .getMany();           
     }
 
-    async create(user: UserType): Promise<UserType> {
-        const newUser = await this._getQueryBuilder
-            .insert()
-            .into(Users)
-            .values({
-                   email: user.email,
-                   user_name: user.user_name 
-                })
-            .execute();                
-        return null;
+    async create(source: UserType): Promise<UserType> {
+        const user = new Users();
+        user.email = source.email;
+        user.user_name = source.user_name;
+        return await getConnection().manager.save(user);
     }
 
     async getById(id: number): Promise<UserType> {

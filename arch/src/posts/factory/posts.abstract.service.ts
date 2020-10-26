@@ -8,5 +8,17 @@ export abstract class PostAbstractService {
 
     public create(post: PostType): Promise<PostType> {
         return this.factoryCrud().create(post);
-    }        
+    }
+    
+    public getById(id: number): Promise<PostType> {
+        return this.factoryCrud().getById(id);
+    }
+
+    public update(id: number, post: PostType): Promise<PostType> {
+        return this.factoryCrud().update(id, post);
+    }
+
+    public deleteById(id: number): Promise<string> {
+        return this.factoryCrud().deleteById(id);
+    }    
 }
